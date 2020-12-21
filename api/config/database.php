@@ -11,6 +11,7 @@ class DataBase{
     
     try{
       $this->conn = new PDO("mysql:host=".$this->host.";dbname".$this->db, $this->user, $this->pass);
+      $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $this->conn->exec("set names utf8");
     }catch(PDOException $except){
       echo "Conn err:". $except->getMessage();
