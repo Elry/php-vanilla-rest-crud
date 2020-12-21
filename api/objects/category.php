@@ -1,7 +1,7 @@
 <?php
 class Category{
   private $conn;
-  private $table_name = "categories";
+  private $tableName = "categories";
 
   public $id;
   public $name;
@@ -13,7 +13,7 @@ class Category{
   }
 
   public function readAll(){
-    $query = "SELECT id, name, description FROM ".$this->table_name. " ORDER BY name";
+    $query = "SELECT id, name, description FROM {$this->tableName} ORDER BY name";
 
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
@@ -21,7 +21,7 @@ class Category{
   }
 
   public function read(){
-    $query = "SELECT id, name, description FROM ".$this->table_name. " ORDER BY name";
+    $query = "SELECT id, name, description FROM {$this->tableName} ORDER BY name";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
 

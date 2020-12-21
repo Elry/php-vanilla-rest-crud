@@ -18,9 +18,9 @@ $stmt = $product->readPaging($recordNum, $recordsPage);
 $num = $stmt->rowCount();
 
 if($num > 0){
-  $product_arr = array();
-  $product_arr["paging"] = array();
-  $product_arr["records"] = array();
+  $productArr = array();
+  $productArr["paging"] = array();
+  $productArr["records"] = array();
 
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     extract($row);
@@ -33,15 +33,15 @@ if($num > 0){
       "category_name" => $category_name
     );
 
-    array_push($product_arr["records"], $product_item);
+    array_push($productArr["records"], $product_item);
   }
 
   $totalRows = $product->count();
   $pageURL = "{$home_url}product/read_paging.php?";
-  $product_arr["paging"] = $utilities->getPaging($page, $totalRows, $recordsPage, $pageURL);
+  $productArr["paging"] = $utilities->getPaging($page, $totalRows, $recordsPage, $pageURL);
 
   http_response_code(200);
-  echo json_encode($product_arr);
+  echo json_encode($productArr);
 }else{
     http_response_code(404);
     echo json_encode(array("message" => "Unable to read paging"));
